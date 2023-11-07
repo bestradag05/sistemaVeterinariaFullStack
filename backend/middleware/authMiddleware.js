@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import veterinario from "../models/Veterinario.js";
 import Veterinario from '../models/Veterinario.js';
 
 const checkAuth = async (req, res, next) => {
