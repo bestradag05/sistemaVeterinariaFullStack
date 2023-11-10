@@ -55,7 +55,7 @@ const Registrar = () => {
 
       setAlerta({
       msg: 'Creado correctamente, revisa tu email',
-      error: 
+      error: false
       });
 
     } catch (error) {
