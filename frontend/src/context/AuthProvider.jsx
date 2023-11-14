@@ -4,19 +4,18 @@ import clienteAxios from '../config/axios';
 const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
-
     const [cargando, setCargando] = useState(true);
     const [auth, setAuth] = useState({});
 
     useEffect(() => {
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('token');
-            
+
             if(!token){
                 setCargando(false);
                 return
             }
-
+            
 
             const config = {
                 headers: {
@@ -27,7 +26,7 @@ const AuthProvider = ({children}) => {
 
             try {
                 const { data } = await clienteAxios('/veterinarios/perfil', config);
-                
+                console.log(data);
                 setAuth(data);
 
             } catch (error) {
@@ -41,11 +40,18 @@ const AuthProvider = ({children}) => {
         autenticarUsuario();
     }, [])
 
+    const cerrarSesion = () => {
+        localStorage.removeItem('token');
+        setAuth({});
+    }
+
     return(
         <AuthContext.Provider
             value={{
-                auth, setAuth,
-                cargando
+                auth, 
+                setAuth,
+                cargando,
+                cerrarSesion
             }}
         >
             {children}
