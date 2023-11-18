@@ -2,7 +2,7 @@
 
 const ListadoPacientes = () => {
   return (
-    <div>ListadoPacientes</div>
+    <div></div>
   )
 }
 
