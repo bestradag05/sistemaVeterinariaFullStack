@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Alerta from './Alerta';
 import usePacientes from "../../hooks/usePacientes";
 
@@ -9,14 +9,32 @@ const Formulario = () => {
     const [email, setEmail] = useState('');
     const [fecha, setFecha] = useState('');
     const [sintomas, setSintomas] = useState('');
+    const [id, setId] = useState(null);
 
     const [alerta, setAlerta] = useState({});
 
-    const { guardarPaciente } = usePacientes();
+    const { guardarPaciente, paciente } = usePacientes();
 
+    useEffect(() => {
+
+        if(paciente?.nombre){
+            setNombre(paciente.nombre);
+            setPropietario(paciente.propietario);
+            setEmail(paciente.email);
+            setFecha(paciente.fecha);
+            setSintomas(paciente.sintomas);
+            setId(paciente._id);
+        }
+       
+
+    }, [paciente]);
+
+    console.log(paciente);
 
     const handleSubmit = e => {
         e.preventDefault();
+
+        console.log('Se ejecuto formulario')
 
         // Validar el formulario
 
@@ -26,13 +44,28 @@ const Formulario = () => {
                 msg: 'Todos los campos son obligatorios',
                 error: true,
             })
+
+            return
         }
 
-        setAlerta({});
+        
 
         guardarPaciente({
-            nombre, propietario, email, fecha, sintomas
+            nombre, propietario, email, fecha, sintomas, id
         })
+
+        setAlerta({
+            msg: 'Guardado Correctamente'
+        });
+
+        //Limpiar el formulario
+
+        setNombre('');
+        setPropietario('');
+        setEmail('');
+        setFecha('');
+        setSintomas('');
+        setId('');
     }
 
     return (
@@ -125,7 +158,7 @@ const Formulario = () => {
 
                 <input
                     type="submit"
-                    value="Agregar Paciente"
+                    value={id ? 'Guardar Cambios' : 'Agregar Paciente'}
                     className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
 
                 />
