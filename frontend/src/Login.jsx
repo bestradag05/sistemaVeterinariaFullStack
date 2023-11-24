@@ -24,7 +24,7 @@ const Login = () => {
     }
 
     try {
-        const {data} = await clienteAxios.post('/veterinarios/login', {
+        const {data} = await clienteAxios.post('veterinarios/login', {
             email,
             password
         });
