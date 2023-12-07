@@ -3,7 +3,7 @@ import { Link, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Alerta from "./components/Alerta";
 import clienteAxios from "./config/axios";
-
+//Comentario en login
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
