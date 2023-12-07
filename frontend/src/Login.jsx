@@ -59,7 +59,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              placeholder="Email de registro"
+              placeholder="correo@correo.com"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={email}
               onChange={ e => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ const Login = () => {
             </label>
             <input
               type="password"
-              placeholder="Tu Password"
+              placeholder="password"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={password}
               onChange={e => setPassword(e.target.value)}
